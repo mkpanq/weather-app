@@ -1,14 +1,13 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Header from "./components/Header";
+import Dashboard from "./components/Dashboard";
 
 function App() {
   const queryClient = new QueryClient();
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="bg-background h-screen w-screen flex flex-col">
-        <Header />
-      </div>
+      <Dashboard />
+
       {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </QueryClientProvider>
   );

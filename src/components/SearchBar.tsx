@@ -1,18 +1,12 @@
 import { useState } from "react";
-import getCurrentWeather from "../api/getCurrentWeather";
-import { useQuery } from "@tanstack/react-query";
+import useQueryData from "../lib/hooks/useQueryData";
 
 const SearchBar = () => {
   const [currentCity, setCurrentCity] = useState("");
-
-  const { isFetching, error, data } = useQuery({
-    queryKey: ["currentWeather", currentCity],
-    queryFn: async () => getCurrentWeather(currentCity),
-    enabled: !!currentCity,
-    retry: false,
-  });
+  const { isFetching, error, data, queryData } = useQueryData(currentCity);
 
   const onClickHandler = (event) => {
+    console.log(queryData);
     event.preventDefault();
 
     const inputValue = normalizeAndReturnCityValue(event.target[0].value);
@@ -44,6 +38,7 @@ const SearchBar = () => {
           <h2>{data.current.temperature.fahrenheit}</h2>
         </div>
       )}
+      {JSON.stringify(queryData)}
     </>
   );
 };

@@ -11,7 +11,7 @@ export type WeatherData = {
 };
 
 type CurrentWeatherData = {
-  lastUpdated: number;
+  lastUpdated: string;
   temperature: {
     celcius: number;
     fahrenheit: number;
@@ -43,5 +43,5 @@ type LocationData = {
   name: string;
   region: string;
   country: string;
-  localtime: number;
+  localtime: string;
 };

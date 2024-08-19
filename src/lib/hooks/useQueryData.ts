@@ -25,7 +25,8 @@ const getQueryCacheData = (client: QueryClient) => {
     })
     .filter((array) => array[1] !== undefined)
     .slice(-4)
-    .reverse();
+    .reverse()
+    .map((array) => array[1]) as WeatherData[];
 };
 
 export default useQueryData;

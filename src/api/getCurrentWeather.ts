@@ -1,28 +1,22 @@
+import { weatherDataParser } from "./helpers";
+import { ErrorResponse, WeatherData } from "../lib/types";
 import {
   CityNotFoundError,
   DefaultError,
   ApiKeyInvalidError,
   ApiLimitationError,
-} from "./errors";
+} from "../lib/errors";
 
+const API_URL = import.meta.env.VITE_WEATHER_API_URL;
 const CURRENT_WEATHER_API_PATH = "current.json";
 
-type ErrorResponse = {
-  error: {
-    code: number;
-    message: string;
-  };
-};
-
 const getCityAPIUrl = (city: string) => {
-  return `${
-    import.meta.env.VITE_WEATHER_API_URL
-  }/${CURRENT_WEATHER_API_PATH}?q=${city}`;
+  return `${API_URL}/${CURRENT_WEATHER_API_PATH}?q=${city}`;
 };
 
-// TODO: Add return data type !
-const getCurrentWeather = async (city: string) => {
+const getCurrentWeather = async (city: string): Promise<WeatherData> => {
   const cityUrl = getCityAPIUrl(city);
+
   const response = await fetch(cityUrl, {
     headers: {
       key: import.meta.env.VITE_WEATHER_API_KEY,
@@ -49,7 +43,9 @@ const getCurrentWeather = async (city: string) => {
     }
   }
 
-  return parsedResponse;
+  const weatherData: WeatherData = weatherDataParser(parsedResponse);
+
+  return weatherData;
 };
 
 export default getCurrentWeather;

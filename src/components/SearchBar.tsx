@@ -38,7 +38,10 @@ const SearchBar = () => {
       {data && (
         <div>
           <h2>{data.location.name}</h2>
-          <p>{data.current.temp_c}°C</p>
+          <h2>{data.location.country}</h2>
+          <h2>{data.current.condition.text}</h2>
+          <h2>{data.current.temperature.celcius}</h2>
+          <h2>{data.current.temperature.fahrenheit}</h2>
         </div>
       )}
     </>

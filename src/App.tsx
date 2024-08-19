@@ -7,9 +7,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div>
-        <SearchBar />
-      </div>
+      <SearchBar />
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );

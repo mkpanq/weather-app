@@ -5,10 +5,11 @@ import { useQuery } from "@tanstack/react-query";
 const SearchBar = () => {
   const [currentCity, setCurrentCity] = useState("");
 
-  const { isPending, error, data } = useQuery({
+  const { isFetching, error, data } = useQuery({
     queryKey: ["currentWeather", currentCity],
     queryFn: async () => getCurrentWeather(currentCity),
     enabled: !!currentCity,
+    retry: false,
   });
 
   const onClickHandler = (event) => {
@@ -32,14 +33,14 @@ const SearchBar = () => {
         <input placeholder="Enter city name..." />
         <button>Enter</button>
       </form>
-      {/* {isPending && <p>Loading...</p>}
+      {isFetching && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}
       {data && (
         <div>
           <h2>{data.location.name}</h2>
           <p>{data.current.temp_c}°C</p>
         </div>
-      )} */}
+      )}
     </>
   );
 };

@@ -1,6 +1,7 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { QueryClient, useQuery, useQueryClient } from "@tanstack/react-query";
 import getCurrentWeather from "../../api/getCurrentWeather";
 import { DEFAULT_QUERY_KEY } from "../config";
+import { WeatherData } from "../types";
 
 const useQueryData = (currentCity: string) => {
   const queryClient = useQueryClient();
@@ -11,12 +12,20 @@ const useQueryData = (currentCity: string) => {
     enabled: !!currentCity,
     retry: false,
   });
+  const cacheData = getQueryCacheData(queryClient);
 
-  const queryData = queryClient.getQueriesData({
-    queryKey: [DEFAULT_QUERY_KEY],
-  });
+  return { isFetching, error, data, cacheData };
+};
 
-  return { isFetching, error, data, queryData };
+// TODO: Remember to invalidate cache when click on one of the last 4 cities
+const getQueryCacheData = (client: QueryClient) => {
+  return client
+    .getQueriesData<WeatherData>({
+      queryKey: [DEFAULT_QUERY_KEY],
+    })
+    .filter((array) => array[1] !== undefined)
+    .slice(-4)
+    .reverse();
 };
 
 export default useQueryData;

@@ -1,5 +1,11 @@
+import SearchBar from "./components/SearchBar";
+
 function App() {
-  return <p className="text-3xl">Hello World !</p>;
+  return (
+    <div>
+      <SearchBar />
+    </div>
+  );
 }
 
 export default App;

@@ -12,9 +12,9 @@ const Dashboard = () => {
   const { isFetching, error, data, refetch } = useQueryData(currentCity);
 
   return (
-    <div className="bg-whiteish h-full w-full flex flex-col font-poppins md:max-w-4xl md:mx-auto">
-      <div className="mx-3 mt-4 flex flex-col gap-3 md:flex-row">
-        <header className="border-b-0.5 border-greyish shadow-md shadow-greyish bg-secondary/70 px-4 py-4 rounded-2xl flex flex-row justify-between items-center md:w-[400px] md:grow-0">
+    <div className="bg-whiteish h-full w-full flex flex-col font-poppins md:max-w-4xl md:mx-auto md:h-[600px]">
+      <div className="mx-3 my-6 flex flex-col gap-3 md:flex-row">
+        <header className="border-b-0.5 border-greyish shadow-lg shadow-greyish bg-secondary/70 px-4 py-4 rounded-2xl flex flex-row justify-between items-center md:w-[400px] md:grow-0">
           <div className="flex flex-col">
             <p className="font-semibold text-xl text-title">Weather Forecast</p>
             <p className="font-light text-xs text-subtitle">
@@ -33,7 +33,9 @@ const Dashboard = () => {
           <LastSearches setCurrentCity={setCurrentCity} />
         </div>
       </div>
-
+      {/* TODO: Add refresh button for clear cache and download data again */}
+      <p>Data from: xxx, Refresh</p>
+      <EmptyState />
       {/* Data display for all data */}
       {/* Emmpty state when no data is fetched */}
       {/* Error state when fetching ends with Error */}

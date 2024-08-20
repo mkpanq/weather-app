@@ -2,6 +2,7 @@ import { useState } from "react";
 import useQueryData from "../lib/hooks/useQueryData";
 import { SearchBar } from "./SearchBar";
 import LastSearches from "./LastSearches";
+import DataDisplay from "./DataDisplay";
 
 const Dashboard = () => {
   const [currentCity, setCurrentCity] = useState("");
@@ -13,7 +14,12 @@ const Dashboard = () => {
         <SearchBar setCurrentCity={setCurrentCity} />
         <LastSearches setCurrentCity={setCurrentCity} />
       </div>
-      {JSON.stringify(data)}
+      <DataDisplay
+        data={data}
+        isFetching={isFetching}
+        error={error}
+        refetch={refetch}
+      />
     </div>
   );
 };

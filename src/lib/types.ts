@@ -1,8 +1,15 @@
+import { QueryKey } from "@tanstack/react-query";
+
 export type ErrorResponse = {
   error: {
     code: number;
     message: string;
   };
+};
+
+export type CachedWeatherData = {
+  queryKey: QueryKey;
+  data: WeatherData;
 };
 
 export type WeatherData = {

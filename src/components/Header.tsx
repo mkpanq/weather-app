@@ -4,7 +4,7 @@ import { SearchBar } from "./SearchBar";
 
 const Header = ({ setCurrentCity, cacheData }: IHeader) => {
   return (
-    <div className="mx-4 my-6">
+    <div className="mx-4 my-6 space-y-2">
       <SearchBar setCurrentCity={setCurrentCity} />
       <LastSearches cacheData={cacheData} />
     </div>

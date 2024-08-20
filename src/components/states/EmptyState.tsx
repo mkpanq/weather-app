@@ -1,9 +1,8 @@
 const EmptyState = () => {
   return (
-    <div className="bg-whiteish w-full h-full flex items-center justify-center">
-      <p className="text-2xl text-primary">
-        No data available, please search for a city !
-      </p>
+    <div className="w-full h-full flex flex-col items-center text-secondAccent/50 md:text-2xl text-center">
+      <p>No data available, please enter a city!</p>
+      <span className="icon-[wi--cloudy] text-6xl" />
     </div>
   );
 };

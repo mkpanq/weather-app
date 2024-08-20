@@ -1,3 +1,16 @@
+import {
+  ApiKeyInvalidError,
+  ApiLimitationError,
+  CityNotFoundError,
+  DefaultError,
+} from "./errors";
+
+export type WeatherAPIErrorType =
+  | DefaultError
+  | CityNotFoundError
+  | ApiKeyInvalidError
+  | ApiLimitationError;
+
 export type ErrorResponse = {
   error: {
     code: number;

@@ -2,8 +2,9 @@ import { WeatherAPIErrorType } from "../../lib/types";
 
 const ErrorState = ({ error }: { error: WeatherAPIErrorType }) => {
   return (
-    <div className="bg-whiteish w-full h-96 flex items-center justify-center">
-      <p className="text-2xl text-primary">{error.message}</p>
+    <div className="w-full h-full flex flex-col items-center text-accent/80 md:text-2xl text-center">
+      <p>{error.message}</p>
+      <span className="icon-[wi--storm-showers] text-6xl" />
     </div>
   );
 };

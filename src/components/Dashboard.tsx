@@ -6,6 +6,7 @@ import DataDisplay from "./DataDisplay";
 import EmptyState from "./states/EmptyState";
 import ErrorState from "./states/ErrorState";
 import FetchingState from "./states/FetchingState";
+import { WeatherAPIErrorType } from "../lib/types";
 
 const Dashboard = () => {
   const [currentCity, setCurrentCity] = useState("");
@@ -33,13 +34,15 @@ const Dashboard = () => {
           <LastSearches setCurrentCity={setCurrentCity} />
         </div>
       </div>
+
       {/* TODO: Add refresh button for clear cache and download data again */}
-      <p>Data from: xxx, Refresh</p>
-      <EmptyState />
+      {/* <p>Data from: xxx, Refresh</p> */}
+
       {/* Data display for all data */}
       {/* Emmpty state when no data is fetched */}
       {/* Error state when fetching ends with Error */}
       {/* Fetching state when refreshing / fetching data */}
+
       {/* <div className="h-full">
         {isFetching ? (
           <FetchingState />

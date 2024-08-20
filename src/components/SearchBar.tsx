@@ -1,7 +1,10 @@
 import { SearchIcon } from "../icons/SearchIcon";
-import { ISearchBar } from "../lib/interfaces";
 
-export const SearchBar = ({ setCurrentCity }: ISearchBar) => {
+export const SearchBar = ({
+  setCurrentCity,
+}: {
+  setCurrentCity: (city: string) => void;
+}) => {
   const onSubmitHandler = (event) => {
     event.preventDefault();
 

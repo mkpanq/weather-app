@@ -8,7 +8,10 @@ export type ErrorResponse = {
 };
 
 export type CachedWeatherData = {
-  queryKey: QueryKey;
+  queryKey: {
+    base: string;
+    city: string;
+  };
   data: WeatherData;
 };
 

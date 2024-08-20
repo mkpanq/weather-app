@@ -1,9 +1,11 @@
-import { QueryClient, useQueryClient } from "@tanstack/react-query";
-import { ILastSearch } from "../lib/interfaces";
-import { CachedWeatherData } from "../lib/types";
+import useQueryCachedData from "../lib/hooks/useQueryCachedData";
 
-const LastSearches = ({ cacheData }: ILastSearch) => {
-  const queryClient = useQueryClient();
+const LastSearches = ({
+  setCurrentCity,
+}: {
+  setCurrentCity: (city: string) => void;
+}) => {
+  const cacheData = useQueryCachedData();
 
   // const testCacheData: CachedWeatherData[] = [
   //   {
@@ -155,45 +157,25 @@ const LastSearches = ({ cacheData }: ILastSearch) => {
   // TODO: Remember  - no relocate if empty !
   // if (testCacheData.length) return null;
 
+  const onClickHandler = (cityName: string) => {
+    setCurrentCity(cityName);
+  };
+
   return (
     <div className="text-[10px]">
       <p className="px-1 font-extralight">Last searched cities</p>
       <ul className="flex flex-row gap-1 my-1 text-nowrap overflow-x-auto scrollbar-hide">
         {cacheData.map((data) => (
-          <LastSearchCard
-            key={data.queryKey.join()}
-            data={data}
-            queryClient={queryClient}
-          />
+          <li key={data.queryKey.city}>
+            <button onClick={() => onClickHandler(data.queryKey.city)}>
+              <div className="px-5 py-1 rounded-lg bg-primary/70 text-gray-100 font-semibold">
+                {data.data.location.name}
+              </div>
+            </button>
+          </li>
         ))}
       </ul>
     </div>
   );
 };
-
-const LastSearchCard = ({
-  data,
-  queryClient,
-}: {
-  data: CachedWeatherData;
-  queryClient: QueryClient;
-}) => {
-  const onClickHandler = (event) => {
-    event.preventDefault();
-    // queryClient.invalidateQueries({
-    //   queryKey: data.queryKey,
-    //   refetchType: "all",
-    // });
-    // console.log(data.queryKey);
-  };
-
-  return (
-    <button onClick={onClickHandler}>
-      <div className="px-5 py-1 rounded-lg bg-primary/70 text-gray-100 font-semibold">
-        {data.data.location.name}
-      </div>
-    </button>
-  );
-};
-
 export default LastSearches;

@@ -12,9 +12,9 @@ const Dashboard = () => {
   const { isFetching, error, data, refetch } = useQueryData(currentCity);
 
   return (
-    <div className="bg-whiteish h-full w-full flex flex-col font-poppins">
-      <div className="space-y-3 mx-3 mt-4">
-        <header className="border-b-0.5 border-greyish shadow-md shadow-greyish bg-secondary/70 px-4 py-4 rounded-2xl flex flex-row justify-between items-center">
+    <div className="bg-whiteish h-full w-full flex flex-col font-poppins md:max-w-4xl md:mx-auto">
+      <div className="mx-3 mt-4 flex flex-col gap-3 md:flex-row">
+        <header className="border-b-0.5 border-greyish shadow-md shadow-greyish bg-secondary/70 px-4 py-4 rounded-2xl flex flex-row justify-between items-center md:w-[400px] md:grow-0">
           <div className="flex flex-col">
             <p className="font-semibold text-xl text-title">Weather Forecast</p>
             <p className="font-light text-xs text-subtitle">
@@ -28,9 +28,10 @@ const Dashboard = () => {
           </div>
           <span className="icon-[wi--night-alt-cloudy-windy] text-accent text-5xl" />
         </header>
-
-        <SearchBar setCurrentCity={setCurrentCity} />
-        <LastSearches setCurrentCity={setCurrentCity} />
+        <div className="flex flex-col gap-3 md:grow">
+          <SearchBar setCurrentCity={setCurrentCity} />
+          <LastSearches setCurrentCity={setCurrentCity} />
+        </div>
       </div>
 
       {/* Data display for all data */}

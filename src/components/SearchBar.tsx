@@ -1,5 +1,3 @@
-import { SearchIcon } from "../icons/SearchIcon";
-
 export const SearchBar = ({
   setCurrentCity,
 }: {
@@ -13,7 +11,7 @@ export const SearchBar = ({
   };
 
   return (
-    <div className="border border-slate-300 rounded-lg py-2 px-3">
+    <div className="shadow-lg border border-subtitle/20 rounded-xl py-2 px-3">
       <form
         onSubmit={onSubmitHandler}
         className="
@@ -33,11 +31,11 @@ export const SearchBar = ({
           text-sm
           border-none
           font-light
-          text-slate-800
+          text-subtitle
         "
         />
         <button>
-          <SearchIcon />
+          <span className="icon-[material-symbols-light--search] text-2xl align-middle" />
         </button>
       </form>
     </div>

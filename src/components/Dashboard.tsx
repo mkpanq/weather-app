@@ -12,8 +12,23 @@ const Dashboard = () => {
   const { isFetching, error, data, refetch } = useQueryData(currentCity);
 
   return (
-    <div className="bg-background h-screen w-full flex flex-col">
-      <div className="mx-4 my-6 space-y-2">
+    <div className="bg-whiteish h-full w-full flex flex-col font-poppins">
+      <div className="space-y-3 mx-3 mt-4">
+        <header className="border-b-0.5 border-greyish shadow-md shadow-greyish bg-secondary/70 px-4 py-4 rounded-2xl flex flex-row justify-between items-center">
+          <div className="flex flex-col">
+            <p className="font-semibold text-xl text-title">Weather Forecast</p>
+            <p className="font-light text-xs text-subtitle">
+              {new Date().toLocaleDateString("en-US", {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </p>
+          </div>
+          <span className="icon-[wi--night-alt-cloudy-windy] text-accent text-5xl" />
+        </header>
+
         <SearchBar setCurrentCity={setCurrentCity} />
         <LastSearches setCurrentCity={setCurrentCity} />
       </div>
@@ -22,16 +37,17 @@ const Dashboard = () => {
       {/* Emmpty state when no data is fetched */}
       {/* Error state when fetching ends with Error */}
       {/* Fetching state when refreshing / fetching data */}
-
-      {isFetching ? (
-        <FetchingState />
-      ) : error ? (
-        <ErrorState error={error} />
-      ) : data ? (
-        <DataDisplay data={data} refetch={refetch} />
-      ) : (
-        <EmptyState />
-      )}
+      {/* <div className="h-full">
+        {isFetching ? (
+          <FetchingState />
+        ) : error ? (
+          <ErrorState error={error} />
+        ) : data ? (
+          <DataDisplay data={data} refetch={refetch} />
+        ) : (
+          <EmptyState />
+        )}
+      </div> */}
     </div>
   );
 };

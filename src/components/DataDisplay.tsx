@@ -31,11 +31,7 @@ import WeatherGraph from "./data-display/graph";
 // };
 
 const DataDisplay = ({ isFetching, error, data, refetch }: IQueryData) => {
-  return (
-    <div>
-      <WeatherGraph />
-    </div>
-  );
+  return <div>{data && <WeatherGraph weatherData={data} />}</div>;
 };
 
 export default DataDisplay;

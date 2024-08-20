@@ -5,30 +5,57 @@ import {
   PointElement,
   LineElement,
   Filler,
-  plugins,
 } from "chart.js";
 import { WeatherData } from "../../lib/types";
-import { color } from "chart.js/helpers";
+import {
+  CONDITIONS_BOTTOM_RANGE_VALUE,
+  CONDITIONS_TOP_RANGE_VALUE,
+  GRAPH_BOTTOM_SCORE,
+  GRAPH_TOP_SCORE,
+} from "../../lib/config";
 
-const WeatherGraph = () => {
+const graphScoreCalculation = (values: number[]): number[] => {
+  return values.map((value) => {
+    if (value < CONDITIONS_BOTTOM_RANGE_VALUE) return GRAPH_BOTTOM_SCORE;
+    if (value > CONDITIONS_TOP_RANGE_VALUE) return GRAPH_TOP_SCORE;
+
+    return Math.ceil(
+      ((value - CONDITIONS_BOTTOM_RANGE_VALUE) /
+        (CONDITIONS_TOP_RANGE_VALUE - CONDITIONS_BOTTOM_RANGE_VALUE)) *
+        GRAPH_TOP_SCORE
+    );
+  });
+};
+
+const WeatherGraph = ({ weatherData }: { weatherData: WeatherData }) => {
   ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler);
-  // const temperature = weatherData.current.temperature.celcius;
-  // const windSpeed = weatherData.current.wind.kph;
-  // const humidity = weatherData.current.humidity;
-  // const cityName = weatherData.location.name;
+  const [temperatureScore, windSpeedScore, humidityScore] =
+    graphScoreCalculation([
+      weatherData.current.temperature.fahrenheit,
+      weatherData.current.wind.kph,
+      weatherData.current.humidity,
+    ]);
 
   const graphData = {
     labels: ["Temperature", "Wind Speed", "Humidity"],
     datasets: [
       {
-        label: "City",
-        data: [3, 10, 7],
+        data: [temperatureScore, windSpeedScore, humidityScore],
         backgroundColor: "#7284FF70",
         borderColor: "#7284FF",
         borderJoinStyle: "round" as CanvasLineJoin,
-        borderWidth: 5,
+        borderWidth: 3,
         pointRadius: 0,
       },
+      // Background?
+      // {
+      //   data: [10, 10, 10],
+      //   backgroundColor: "#7284FF40",
+      //   capBezierPoints: true,
+      //   tension: 0.9,
+      //   borderWidth: 0,
+      //   pointRadius: 0,
+      // },
     ],
   };
 
@@ -36,7 +63,7 @@ const WeatherGraph = () => {
     scales: {
       r: {
         grid: {
-          color: "#00000010",
+          color: "#00000015",
           circular: true,
           lineWidth: 1,
         },
@@ -52,10 +79,10 @@ const WeatherGraph = () => {
             size: 12,
             weight: "bold",
           },
+          color: "black",
         },
-        color: "#fff",
-        suggestedMin: 0,
-        suggestedMax: 10,
+        min: GRAPH_BOTTOM_SCORE,
+        max: GRAPH_TOP_SCORE,
       },
     },
   };

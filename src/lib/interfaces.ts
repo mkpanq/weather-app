@@ -7,7 +7,7 @@ export interface IQueryData {
   refetch: () => void;
 }
 
-export interface IDataDisplayData {
+export interface IDataStateData {
   data: WeatherData;
   refetch: () => void;
 }

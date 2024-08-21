@@ -4,9 +4,10 @@ export const CONDITIONS_TOP_RANGE_VALUE = 100;
 export const GRAPH_TOP_SCORE = 10;
 export const GRAPH_BOTTOM_SCORE = 0;
 
-export const WEATHER_CODE_ICONS: {
-  [key: number]: { day: string; night: string };
-} = {
+export const WEATHER_CODE_ICONS: Record<
+  number,
+  { day: string; night: string }
+> = {
   // Clear and sunny conditions, perfect weather.
   1000: {
     day: "icon-[wi--day-sunny]",
@@ -42,8 +43,22 @@ export const WEATHER_CODE_ICONS: {
     day: "icon-[wi--day-fog]",
     night: "icon-[wi--night-fog]",
   },
-
-  // Rainy conditions ranging from light drizzle to heavy rain, includes freezing rain.
+  1240: {
+    day: "icon-[wi--rain]",
+    night: "icon-[wi--rain]",
+  },
+  1243: {
+    day: "icon-[wi--rain]",
+    night: "icon-[wi--rain]",
+  },
+  1246: {
+    day: "icon-[wi--rain]",
+    night: "icon-[wi--rain]",
+  },
+  1072: {
+    day: "icon-[wi--rain]",
+    night: "icon-[wi--rain]",
+  },
   1063: {
     day: "icon-[wi--rain]",
     night: "icon-[wi--rain]",

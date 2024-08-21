@@ -2,13 +2,10 @@ import { useState } from "react";
 import useQueryData from "../lib/hooks/useQueryData";
 import { SearchBar } from "./SearchBar";
 import LastSearches from "./LastSearches";
-import DataDisplay from "./DataDisplay";
+import DataState from "./states/DataState";
 import EmptyState from "./states/EmptyState";
 import ErrorState from "./states/ErrorState";
 import FetchingState from "./states/FetchingState";
-import { WeatherAPIErrorType, WeatherData } from "../lib/types";
-import RefreshComponent from "./data-display/Conditions";
-import Conditions from "./data-display/Conditions";
 
 const Dashboard = () => {
   const [currentCity, setCurrentCity] = useState("");
@@ -42,7 +39,7 @@ const Dashboard = () => {
         ) : error ? (
           <ErrorState error={error} />
         ) : data ? (
-          <DataDisplay data={data} refetch={refetch} />
+          <DataState data={data} refetch={refetch} />
         ) : (
           <EmptyState />
         )}

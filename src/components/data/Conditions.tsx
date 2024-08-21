@@ -1,7 +1,7 @@
 import { WEATHER_CODE_ICONS } from "../../lib/config";
-import { IDataDisplayData } from "../../lib/interfaces";
+import { IDataStateData } from "../../lib/interfaces";
 
-const Conditions = ({ data, refetch }: IDataDisplayData) => {
+const Conditions = ({ data, refetch }: IDataStateData) => {
   const iconSet = WEATHER_CODE_ICONS[data.current.condition.code];
   const icon = data.current.isDay ? iconSet.day : iconSet.night;
   const darkMode = !data.current.isDay;

@@ -42,9 +42,7 @@ const getCurrentWeather = async (city: string): Promise<WeatherData> => {
         throw new DefaultError(errorData.error.message);
     }
   }
-
   const weatherData: WeatherData = weatherDataParser(parsedResponse);
-
   return weatherData;
 };
 

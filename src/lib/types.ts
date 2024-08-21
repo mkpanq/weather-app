@@ -32,6 +32,7 @@ export type WeatherData = {
 };
 
 type CurrentWeatherData = {
+  isDay: boolean;
   lastUpdated: string;
   temperature: {
     celcius: number;

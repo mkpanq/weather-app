@@ -8,6 +8,8 @@ export const SearchBar = ({
 
     const inputValue = normalizeAndReturnCityValue(event.target[0].value);
     setCurrentCity(inputValue);
+
+    event.target[0].value = "";
   };
 
   return (

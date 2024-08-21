@@ -1,8 +1,8 @@
 import { IDataDisplayData } from "../lib/interfaces";
-import WeatherGraph from "./data-display/graph";
+import Conditions from "./data-display/Conditions";
 
 const DataDisplay = ({ data, refetch }: IDataDisplayData) => {
-  return <WeatherGraph weatherData={data} />;
+  return <Conditions data={data} refetch={refetch} />;
 };
 
 export default DataDisplay;

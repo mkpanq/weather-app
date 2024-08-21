@@ -9,6 +9,7 @@ export const weatherDataParser = (data: any): WeatherData => {
       localtime: data.location.localtime,
     },
     current: {
+      isDay: !!data.current.is_day,
       lastUpdated: data.current.last_updated,
       temperature: {
         celcius: data.current.temp_c,

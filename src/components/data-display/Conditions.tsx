@@ -4,31 +4,66 @@ import { IDataDisplayData } from "../../lib/interfaces";
 const Conditions = ({ data, refetch }: IDataDisplayData) => {
   const iconSet = WEATHER_CODE_ICONS[data.current.condition.code];
   const icon = data.current.isDay ? iconSet.day : iconSet.night;
+  const darkMode = !data.current.isDay;
+
   return (
-    <div className="relative w-full h-[150px] border border-secondAccent/50 border-0.5 rounded-xl shadow-lg">
-      <div>
-        <p>{data.location.name}</p>
-        <p>
-          {data.location.region
-            ? [data.location.region, data.location.country].join(", ")
-            : data.location.country}
-        </p>
-        <p>{data.current.temperature.celcius} °C</p>
-        <p>{data.current.condition.text}</p>
-        <p>{data.location.localtime}</p>
-        <span className={`${icon} text-6xl`} />
+    <div
+      className={`relative w-full h-[150px] ${
+        darkMode ? "border-primary bg-slate-600" : "border-accent bg-primary/70"
+      } border-2 rounded-xl shadow-lg`}
+    >
+      <div
+        className={`px-3 py-1 h-full ${
+          darkMode ? "text-whiteish" : "text-title"
+        } flex flex-col justify-between`}
+      >
+        <div className="flex flex-row justify-between items-center">
+          <div className="flex flex-col">
+            <p className="text-xl font-semibold">{data.location.name}</p>
+            <p className="text-[10px] font-light">
+              {data.location.region
+                ? [data.location.region, data.location.country].join(", ")
+                : data.location.country}
+            </p>
+          </div>
+
+          <button onClick={refetch}>
+            <span
+              className={`icon-[wi--cloud-refresh] text-3xl ${
+                darkMode ? "text-primary" : "text-accent"
+              }`}
+            />
+          </button>
+        </div>
+
+        <div className="flex flex-row justify-between items-center">
+          <div className="flex flex-col tracking-wide gap-1">
+            <p
+              className={`${
+                darkMode ? "text-primary" : "text-accent"
+              } font-bold text-2xl`}
+            >
+              {data.current.temperature.celcius} °C /{" "}
+              {data.current.temperature.fahrenheit} °F
+            </p>
+            <p className="font-medium">{data.current.condition.text}</p>
+            <p
+              className={`font-light ${
+                darkMode ? "text-greyish/70" : "text-subtitle"
+              } text-xs`}
+            >
+              {data.location.localtime}
+            </p>
+          </div>
+          <span
+            className={`${icon} ${
+              darkMode ? "text-primary" : "text-accent"
+            } text-8xl`}
+          />
+        </div>
       </div>
-      <RefreshComponent refetch={refetch} />
     </div>
   );
 };
 
 export default Conditions;
-
-const RefreshComponent = ({ refetch }: { refetch: () => void }) => {
-  return (
-    <button onClick={refetch} className="absolute right-0 top-0">
-      <span className="icon-[wi--cloud-refresh] text-5xl text-accent" />
-    </button>
-  );
-};

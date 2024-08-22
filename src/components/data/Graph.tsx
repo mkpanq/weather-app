@@ -16,7 +16,7 @@ import {
 
 const graphScoreCalculation = (values: number[]): number[] => {
   return values.map((value) => {
-    if (value < CONDITIONS_BOTTOM_RANGE_VALUE) return GRAPH_BOTTOM_SCORE;
+    if (value < CONDITIONS_BOTTOM_RANGE_VALUE) return 1;
     if (value > CONDITIONS_TOP_RANGE_VALUE) return GRAPH_TOP_SCORE;
 
     return Math.ceil(
@@ -29,6 +29,7 @@ const graphScoreCalculation = (values: number[]): number[] => {
 
 const WeatherGraph = ({ weatherData }: { weatherData: WeatherData }) => {
   ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler);
+
   const [temperatureScore, windSpeedScore, humidityScore] =
     graphScoreCalculation([
       weatherData.current.temperature.fahrenheit,
@@ -36,26 +37,20 @@ const WeatherGraph = ({ weatherData }: { weatherData: WeatherData }) => {
       weatherData.current.humidity,
     ]);
 
+  const darkMode = !weatherData.current.isDay;
+
   const graphData = {
-    labels: ["Temperature", "Wind Speed", "Humidity"],
+    labels: ["Temperature", "Wind", "Humidity"],
     datasets: [
       {
         data: [temperatureScore, windSpeedScore, humidityScore],
-        backgroundColor: "#7284FF70",
-        borderColor: "#7284FF",
+        backgroundColor: "#D36D5899",
+        borderColor: `${darkMode ? "#FCD59C" : "#75635E"}`,
         borderJoinStyle: "round" as CanvasLineJoin,
-        borderWidth: 3,
+        borderWidth: 1.5,
         pointRadius: 0,
+        pointHoverRadius: 0,
       },
-      // Background?
-      // {
-      //   data: [10, 10, 10],
-      //   backgroundColor: "#7284FF40",
-      //   capBezierPoints: true,
-      //   tension: 0.9,
-      //   borderWidth: 0,
-      //   pointRadius: 0,
-      // },
     ],
   };
 
@@ -63,23 +58,21 @@ const WeatherGraph = ({ weatherData }: { weatherData: WeatherData }) => {
     scales: {
       r: {
         grid: {
-          color: "#00000015",
+          color: `${darkMode ? "#FBD477" : "#75635E70"}`,
           circular: true,
-          lineWidth: 1,
+          lineWidth: 0.5,
         },
         angleLines: {
           display: true,
+          color: `${darkMode ? "#FBD477" : "#75635E70"}`,
         },
         ticks: {
-          display: false, // Hide the ticks
+          stepSize: 2,
+          display: false,
         },
         pointLabels: {
+          color: `${darkMode ? "#FBD477" : "#75635E"}`,
           display: true,
-          font: {
-            size: 12,
-            weight: "bold",
-          },
-          color: "black",
         },
         min: GRAPH_BOTTOM_SCORE,
         max: GRAPH_TOP_SCORE,
@@ -88,7 +81,11 @@ const WeatherGraph = ({ weatherData }: { weatherData: WeatherData }) => {
   };
 
   return (
-    <div>
+    <div
+      className={`w-full relative p-3 ${
+        darkMode ? "border-primary bg-slate-600" : "border-accent bg-primary/70"
+      } border-2 rounded-xl shadow-lg`}
+    >
       <Radar data={graphData} options={graphOptions} />
     </div>
   );

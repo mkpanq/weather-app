@@ -83,7 +83,7 @@ const WeatherGraph = ({ weatherData }: { weatherData: WeatherData }) => {
 
   return (
     <div
-      className={`w-full p-3 ${
+      className={`w-full p-1 min-h-[300px] ${
         darkMode ? "border-primary bg-slate-600" : "border-accent bg-primary/70"
       } border-2 rounded-xl shadow-lg`}
     >

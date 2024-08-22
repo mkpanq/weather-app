@@ -8,18 +8,18 @@ const City = ({ data, refetch }: IDataStateData) => {
 
   return (
     <div
-      className={`relative w-full h-[150px] ${
+      className={`relative w-full h-full border-2 rounded-xl shadow-lg ${
         darkMode ? "border-primary bg-slate-600" : "border-accent bg-primary/70"
-      } border-2 rounded-xl shadow-lg`}
+      }`}
     >
       <div
-        className={`px-3 py-1 h-full ${
+        className={`px-3 py-1 flex flex-col justify-between ${
           darkMode ? "text-whiteish" : "text-title"
-        } flex flex-col justify-between`}
+        }`}
       >
         <div className="flex flex-row justify-between items-center">
           <div className="flex flex-col">
-            <p className="text-xl font-semibold">{data.location.name}</p>
+            <p className="text-xl font-semibold ">{data.location.name}</p>
             <p className="text-[10px] font-light">
               {data.location.region
                 ? [data.location.region, data.location.country].join(", ")

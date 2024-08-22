@@ -12,7 +12,7 @@ const LastSearches = ({
   };
 
   return (
-    <div className="min-h-10 px-2 flex">
+    <div className="min-h-7 flex flex-row">
       {cacheData.length > 0 ? (
         <ul className="flex flex-row gap-1 text-nowrap overflow-x-auto scrollbar-hide self-center md:gap-2">
           {cacheData.map((data) => (

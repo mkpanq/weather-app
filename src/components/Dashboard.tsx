@@ -3,9 +3,6 @@ import useQueryData from "../lib/hooks/useQueryData";
 import { SearchBar } from "./SearchBar";
 import LastSearches from "./LastSearches";
 import DataState from "./states/DataState";
-import EmptyState from "./states/EmptyState";
-import ErrorState from "./states/ErrorState";
-import FetchingState from "./states/FetchingState";
 import NonDataState from "./states/NonDataState";
 
 const Dashboard = () => {
@@ -35,11 +32,13 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {data ? (
+      {isFetching ? (
+        <NonDataState state="FETCHING" />
+      ) : data ? (
         <DataState data={data} refetch={refetch} />
       ) : (
         <NonDataState
-          state={isFetching ? "FETCHING" : error ? "ERROR" : "EMPTY"}
+          state={error ? "ERROR" : "EMPTY"}
           additionalInfo={error?.message}
         />
       )}

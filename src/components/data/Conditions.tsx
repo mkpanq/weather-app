@@ -17,26 +17,48 @@ const Conditions = ({ data }: { data: WeatherData }) => {
         }
       `}
       >
-        <div className="grid grid-cols-2">
-          <div className="flex flex-row p-2 justify-between items-center  text-sm">
+        <div className="grid grid-cols-2 *:flex *:flex-row *:p-2 *:items-center">
+          <div className="text-sm justify-around">
             <span className="icon-[wi--strong-wind] text-3xl rotate-90" />
             <div>
-              <p>{data.current.wind.kph} kph</p>
-              <p>{data.current.wind.mph} mph</p>
+              <p>
+                <span className="font-medium">{data.current.wind.kph}</span>{" "}
+                <span className="text-xs">kph</span>
+              </p>
+              <p>
+                <span className="font-medium">{data.current.wind.mph}</span>{" "}
+                <span className="text-xs">mph</span>
+              </p>
             </div>
-            <div className="flex flex-row text-3xl gap-1">
-              <p className="font-thin">{data.current.wind.direction}</p>
+            <div className="flex flex-col text-xl gap-1 text-center">
               <span
-                className="icon-[wi--wind-direction]"
+                className="icon-[wi--wind-direction] mx-auto"
                 style={{ transform: `rotate(${data.current.wind.degree}deg)` }}
               />
+              <p className="font-thin">{data.current.wind.direction}</p>
             </div>
           </div>
-          <div>humidity</div>
+
+          <div className="justify-center text-3xl">
+            <span className="icon-[wi--humidity] text-5xl" />
+            <p>{data.current.humidity} %</p>
+          </div>
         </div>
 
-        <div className="grid grid-cols-3">
-          <div>Presssure</div>
+        <div className="grid grid-cols-3 *:flex *:flex-row *:p-2  *:items-center">
+          <div className="text-sm justify-center">
+            <span className="icon-[wi--barometer] text-3xl" />
+            <div>
+              <p>
+                <span className="font-medium">{data.current.pressure.mb}</span>{" "}
+                <span className="text-xs">mBar</span>
+              </p>
+              <p>
+                <span className="font-medium">{data.current.pressure.in}</span>{" "}
+                <span className="text-xs">inHg</span>
+              </p>
+            </div>
+          </div>
           <div>preper</div>
           <div>Uv</div>
         </div>

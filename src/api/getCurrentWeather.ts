@@ -43,6 +43,7 @@ const getCurrentWeather = async (city: string): Promise<WeatherData> => {
     }
   }
   const weatherData: WeatherData = weatherDataParser(parsedResponse);
+  console.log(weatherData);
   return weatherData;
 };
 

@@ -1,8 +1,28 @@
+import { NonDataStateData, NonDataStateType } from "./types";
+
 export const DEFAULT_QUERY_KEY = "current_weather";
 export const CONDITIONS_BOTTOM_RANGE_VALUE = 0;
 export const CONDITIONS_TOP_RANGE_VALUE = 100;
 export const GRAPH_TOP_SCORE = 10;
 export const GRAPH_BOTTOM_SCORE = 0;
+
+export const NON_DATA_STATE_INFO: Record<NonDataStateType, NonDataStateData> = {
+  FETCHING: {
+    color: "text-primary/80",
+    defaultInfo: "Loading...",
+    icon: "icon-[wi--cloud-down]",
+  },
+  ERROR: {
+    color: "text-accent/80",
+    defaultInfo: "An error occurred",
+    icon: "icon-[wi--storm-showers]",
+  },
+  EMPTY: {
+    color: "text-secondAccent/50",
+    defaultInfo: "No data available, please enter a city!",
+    icon: "icon-[wi--cloudy]",
+  },
+};
 
 export const WEATHER_CODE_ICONS: Record<
   number,

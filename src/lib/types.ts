@@ -5,6 +5,13 @@ import {
   DefaultError,
 } from "./errors";
 
+export type NonDataStateType = "FETCHING" | "ERROR" | "EMPTY";
+export type NonDataStateData = {
+  color: string;
+  defaultInfo: string;
+  icon: string;
+};
+
 export type WeatherAPIErrorType =
   | DefaultError
   | CityNotFoundError

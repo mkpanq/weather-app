@@ -6,6 +6,7 @@ import DataState from "./states/DataState";
 import EmptyState from "./states/EmptyState";
 import ErrorState from "./states/ErrorState";
 import FetchingState from "./states/FetchingState";
+import NonDataState from "./states/NonDataState";
 
 const Dashboard = () => {
   const [currentCity, setCurrentCity] = useState("");
@@ -33,14 +34,14 @@ const Dashboard = () => {
           <LastSearches setCurrentCity={setCurrentCity} />
         </div>
       </div>
-      {isFetching ? (
-        <FetchingState />
-      ) : error ? (
-        <ErrorState error={error} />
-      ) : data ? (
+
+      {data ? (
         <DataState data={data} refetch={refetch} />
       ) : (
-        <EmptyState />
+        <NonDataState
+          state={isFetching ? "FETCHING" : error ? "ERROR" : "EMPTY"}
+          additionalInfo={error?.message}
+        />
       )}
     </div>
   );

@@ -36,6 +36,9 @@ importers:
       '@iconify-json/material-symbols-light':
         specifier: ^1.1.28
         version: 1.1.28
+      '@iconify-json/tabler':
+        specifier: ^1.1.120
+        version: 1.1.120
       '@iconify-json/wi':
         specifier: ^1.1.9
         version: 1.1.9
@@ -265,6 +268,9 @@ packages:
 
   '@iconify-json/material-symbols-light@1.1.28':
     resolution: {integrity: sha512-SoXeymM+JaORZ+6TdS6K6tx3avf3LghwYw8GI2zX/SdGbFLCOejMy491/0ucs1h4iIgELLFlyUGKeIRlbfmL8g==}
+
+  '@iconify-json/tabler@1.1.120':
+    resolution: {integrity: sha512-G9of3jPsYUfFkdaeqfILQF3xkCuZeitqJDjMkqmzjfJcWzl7JW/PoPJRby28dIUHTyO6eLqOlKhFP4/EQCg44Q==}
 
   '@iconify-json/wi@1.1.9':
     resolution: {integrity: sha512-+nopOJFq5frMoaJFfOeEZZilx0yEO7LXpUucuZ3ziMLKnHX972vMkBDts2o1s/iayb2O2nPXmUHjTOZE1vuC7g==}
@@ -1490,6 +1496,10 @@ snapshots:
   '@humanwhocodes/retry@0.3.0': {}
 
   '@iconify-json/material-symbols-light@1.1.28':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/tabler@1.1.120':
     dependencies:
       '@iconify/types': 2.0.0
 

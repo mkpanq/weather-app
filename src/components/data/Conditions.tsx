@@ -46,7 +46,7 @@ const Conditions = ({ data }: { data: WeatherData }) => {
         </div>
 
         <div className="grid grid-cols-3 *:flex *:flex-row *:p-2  *:items-center">
-          <div className="text-sm justify-center">
+          <div className="text-sm justify-between">
             <span className="icon-[wi--barometer] text-3xl" />
             <div>
               <p>
@@ -59,8 +59,28 @@ const Conditions = ({ data }: { data: WeatherData }) => {
               </p>
             </div>
           </div>
-          <div>preper</div>
-          <div>Uv</div>
+
+          <div className="text-sm justify-evenly">
+            <span className="icon-[wi--hail] text-3xl" />
+            <div>
+              <p>
+                <span className="font-medium">
+                  {data.current.precipitation.mm}
+                </span>{" "}
+                <span className="text-xs">mm</span>
+              </p>
+              <p>
+                <span className="font-medium">
+                  {data.current.precipitation.in}
+                </span>{" "}
+                <span className="text-xs">in</span>
+              </p>
+            </div>
+          </div>
+          <div className="justify-evenly text-3xl">
+            <span className="icon-[tabler--uv-index] text-4xl" />
+            <p>{data.current.uv}</p>
+          </div>
         </div>
       </div>
 

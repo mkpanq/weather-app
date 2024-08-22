@@ -55,6 +55,7 @@ const WeatherGraph = ({ weatherData }: { weatherData: WeatherData }) => {
   };
 
   const graphOptions = {
+    maintainAspectRatio: false,
     scales: {
       r: {
         grid: {
@@ -82,7 +83,7 @@ const WeatherGraph = ({ weatherData }: { weatherData: WeatherData }) => {
 
   return (
     <div
-      className={`w-full relative p-3 ${
+      className={`w-full p-3 ${
         darkMode ? "border-primary bg-slate-600" : "border-accent bg-primary/70"
       } border-2 rounded-xl shadow-lg`}
     >

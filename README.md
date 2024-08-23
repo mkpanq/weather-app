@@ -1,50 +1,38 @@
-# React + TypeScript + Vite
+# Simple React Weather App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple weather application built using React. It fetches weather data from the [WeatherAPI](https://www.weatherapi.com/) and displays the current weather conditions for a given location.
 
-Currently, two official plugins are available:
+Before you start, it's worth to install [asdf](https://asdf-vm.com/) - a version manager for various tools and languages. All required versions of tools used in this project were installed using `asdf`.\
+If you don't use it, just look at the `.tool-versions` file to get to know which versions you need to install locally.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Getting Started
 
-## Expanding the ESLint configuration
+### 1. Clone the Repository
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+git clone <repository-url>
+cd <repository-directory>
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### 2. Install Dependencies
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+pnpm install
 ```
+
+### 3. Set Environment Variables
+
+You need to set up environment variables to configure the weather API:
+
+- `VITE_WEATHER_API_URL`: The base URL for the weather API.
+- `VITE_WEATHER_API_KEY`: Your API key for accessing the weather API.
+
+Best would be creating a `.env.local` file in the root of the project, copy following lines and add values with your actual API URL and key:
+
+### 4. Run the Development Server
+
+```bash
+pnpm run dev
+```
+
+This will start the app in development mode. Open [http://localhost:5173](http://localhost:5173) to view it in your browser.

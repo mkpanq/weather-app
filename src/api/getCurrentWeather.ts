@@ -17,9 +17,6 @@ const getCityAPIUrl = (city: string) => {
 const getCurrentWeather = async (city: string): Promise<WeatherData> => {
   const cityUrl = getCityAPIUrl(city);
 
-  // If you want to delay fethcing a little to see fethcing non data state component :)
-  // await new Promise((resolve) => setTimeout(resolve, 1000));
-
   const response = await fetch(cityUrl, {
     headers: {
       key: import.meta.env.VITE_WEATHER_API_KEY,
